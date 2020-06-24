@@ -43,6 +43,7 @@ app.get("/", (req, res, next) => {
 });
 
 app.use("/user", require("./routes/default"));
+app.use("/sheet", require("./routes/sheet"));
 
 //Listening TO PORT
 const PORT = process.env.PORT || 5000;

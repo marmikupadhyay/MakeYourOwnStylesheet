@@ -1,0 +1,93 @@
+<%- include("./partials/nav.ejs") %>
+<div class="row main-row">
+  <%- include("./partials/sidebar.ejs",{active:2}) %>
+  <section class="workspace">
+    <div class="title-bar col s12">
+      <div class="input-field col s10">
+        <input id="sheet-title" type="text" class="validate" />
+        <label for="sheet-title">Name Of Sheet</label>
+      </div>
+      <div class="col s2 valign-wrapper btn-box">
+        <button class="btn waves-effect waves-light" name="action">
+          Save
+          <i class="material-icons right">save</i>
+        </button>
+      </div>
+    </div>
+    <div class="sheet-box">
+      <div class="col s8">
+        <div class="title-bar col s12" id="comp-title">
+          <div class="input-field col s4">
+            <input id="component-title" type="text" class="validate" />
+            <label for="component-title">Name Of Component</label>
+          </div>
+          <div class="input-field col s4">
+            <select>
+              <option value="" disabled selected>Choose your option</option>
+              <option value="class">Class</option>
+              <option value="id">Id</option>
+            </select>
+            <label>Type of Component</label>
+          </div>
+          <div class="col s4 valign-wrapper btn-box">
+            <button
+              class="btn waves-effect waves-light"
+              type="submit"
+              name="action"
+            >
+              Add to sheet
+              <i class="material-icons right">add</i>
+            </button>
+          </div>
+        </div>
+        <div class="preview-bar">
+          <div class="col s6 code-box">
+            <div class="card blue-grey hoverable darken-1 code-card">
+              <div class="card-content white-text">
+                <span class="card-title">Code Preview</span>
+                <blockquote class="grey lighten-2 black-text">
+                  classname { color: black; margin: 20px; padding: 10px;
+                  border:1px solid black; }
+                </blockquote>
+              </div>
+            </div>
+          </div>
+          <div class="col s6 display-box">
+            <div class="card blue-grey hoverable darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">Display Preview</span>
+                <div class="blank">
+                  <div class="displayblock">This is Random Text</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%- include("./partials/inputhandler.ejs") %>
+      </div>
+      <div class="col s4">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">search</i>
+          <input type="text" id="charinput" />
+          <label for="charinput" class="">Search Existing Component</label>
+        </div>
+        <div class="component-list">
+          <ul class="collection">
+            <% for(var i=0;i<=12;i++) { %>
+            <li class="collection-item">Text</li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var selects = M.FormSelect.init(document.querySelectorAll("select"), {});
+    var inputbars = M.Collapsible.init(
+      document.querySelectorAll(".collapsible"),
+      {}
+    );
+  });
+</script>

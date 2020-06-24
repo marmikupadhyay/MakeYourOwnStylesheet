@@ -1,1 +1,52 @@
-
+<%- include("./partials/nav.ejs") %>
+<div class="row main-row">
+  <%- include("./partials/sidebar.ejs",{active:1}) %>
+  <div class="main-area">
+    <div class="heading">
+      <h1 class="z-depth-1">Your StyleSheets</h1>
+      <hr />
+    </div>
+    <div class="input-box">
+      <div class="input-field col s12">
+        <i class="material-icons prefix">search</i>
+        <input type="text" id="charinput" />
+        <label for="charinput" class="">Search Sheets</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 sheet-area">
+        <% for(var i=0;i<=3;i++) { %>
+        <div class="card-panel sheet-card grey lighten-2 z-depth-1 hoverable">
+          <h1 class="card-title valign-wrapper">
+            Title
+          </h1>
+          <a
+            href="#"
+            class="btn-floating btn-large waves-effect waves-light grey darken-4 edit"
+            ><i class="material-icons">edit</i></a
+          >
+          <span class=""
+            >I am a very simple card. I am good at containing small bits of
+            information. I am convenient because I require little markup to use
+            effectively. I am similar to what is called a panel in other
+            frameworks.
+          </span>
+        </div>
+        <% } %>
+        <div
+          class="card-panel sheet-card grey lighten-2 center-align z-depth-1 hoverable"
+        >
+          <h1 class="card-title valign-wrapper">
+            Create New
+          </h1>
+          <a
+            href="#"
+            class="btn-floating btn-large waves-effect waves-light red"
+            ><i class="material-icons large">add</i></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include("./partials/right-side-bar.ejs") %>
+</div>
