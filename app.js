@@ -39,7 +39,7 @@ app.use(function (req, res, next) {
 });
 
 app.get("/", (req, res, next) => {
-  res.redirect("/user");
+  res.redirect("/user/dashboard");
 });
 
 app.use("/user", require("./routes/default"));

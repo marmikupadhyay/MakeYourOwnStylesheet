@@ -1,22 +1,614 @@
 <ul class="collapsible">
   <li>
     <div class="collapsible-header">
-      First
-    </div>
-    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-  </li>
-  <li>
-    <div class="collapsible-header">
-      Second
+      Background
     </div>
     <div class="collapsible-body">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, totam.
+      <div class="row input-box">
+        <div class="col s6">
+          <label for="">Background-Color</label>
+          <input type="color" id="bg-color" name="bg-color" />
+        </div>
+        <div class="input-field col s6">
+          <input type="text" id="bg-image" name="bg-image" />
+          <label for="bg-image">Background-Image</label>
+          <span class="helper-text">Enter the image url/relative path</span>
+        </div>
+        <div class="input-field col s6">
+          <select id="bg-repeat" name="bg-repeat">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="repeat">repeat</option>
+            <option value="repeat-x">repeat-x</option>
+            <option value="repeat-y">repeat-y</option>
+            <option value="no-repeat">no-repeat</option>
+          </select>
+          <label>Background-Repeat</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="bg-position" name="bg-position">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="left">left</option>
+            <option value="right">right</option>
+            <option value="top">top</option>
+            <option value="left top">left top</option>
+            <option value="right bottom">right bottom</option>
+            <option value="50% 50%">50% 50%</option>
+          </select>
+          <label>Background-Position</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="bg-attacgment" name="bg-attachment">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="fixed">fixed</option>
+            <option value="scroll">scroll</option>
+          </select>
+          <label> Background-Attachment</label>
+        </div>
+        <div class="col s12">
+          <a href="#" class="waves-effect waves-light btn">Save Property</a>
+        </div>
+      </div>
     </div>
   </li>
   <li>
     <div class="collapsible-header">
-      Third
+      Fonts
     </div>
-    <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    <div class="collapsible-body">
+      <div class="row input-box">
+        <div class="input-field col s6">
+          <input type="number" id="font-size" name="font-size" />
+          <label for="font-size">Font-Size</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="font-units" name="font-units">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="rem">rem</option>
+            <option value="%">percentage</option>
+          </select>
+          <label>Font Units</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="font-family" name="font-family">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="arial">Arial</option>
+            <option value="'arial black'">Arial Black</option>
+            <option value="'comic sans ms'">Comic Sans MS</option>
+            <option value="'courier new'">Courier New</option>
+            <option value="georgia">Georgia</option>
+            <option value="helvetica">Helvetica</option>
+            <option value="impact">Impact</option>
+            <option value="'times new roman'">Times New Roman</option>
+            <option value="'trebuchet ms'">Trebuchet MS</option>
+            <option value="verdana">Verdana</option>
+          </select>
+          <label>Font-Family</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="font-style" name="font-style">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="normal">Normal</option>
+            <option value="italic">Italic</option>
+            <option value="oblique">Oblique</option>
+          </select>
+          <label>Font-Style</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="font-weight" name="font-weight">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="normal">Normal</option>
+            <option value="bold">Bold</option>
+            <option value="bolder">Bolder</option>
+            <option value="lighter">Lighter</option>
+          </select>
+          <label>Font-Weight</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="font-variant" name="font-variant">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="normal">Normal</option>
+            <option value="small-caps">Small-Caps</option>
+          </select>
+          <label>Font-Variant</label>
+        </div>
+        <div class="col s12">
+          <a href="#" class="waves-effect waves-light btn">Save Property</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header">
+      Border
+    </div>
+    <div class="collapsible-body">
+      <div class="row input-box">
+        <div class="col s6">
+          <label for="">Border-Color</label>
+          <input type="color" id="border-color" name="border-color" />
+        </div>
+        <div class="input-field col s6">
+          <select id="border-units" name="border-units">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="rem">rem</option>
+            <option value="%">percentage</option>
+          </select>
+          <label>Border Units</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="border-all" name="border-all" />
+          <label for="border-all">Border-All</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="border-left" name="border-left" />
+          <label for="border-left">Border-Left</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="border-right" name="border-right" />
+          <label for="border-right">Border-Right</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="border-top" name="border-top" />
+          <label for="border-top">Border-Top</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="border-bottom" name="border-bottom" />
+          <label for="border-bottom">Border-Bottom</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="border-width" name="border-width" />
+          <label for="border-width">Border-Width</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="border-radius" name="border-radius" />
+          <label for="border-radius">Border-Radius</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="border-style" name="border-style">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="solid">Solid</option>
+            <option value="dashed">Dashed</option>
+            <option value="dotted">Dotted</option>
+            <option value="double">Double</option>
+            <option value="groove">Groove</option>
+            <option value="inset">Inset</option>
+            <option value="outset">Outset</option>
+            <option value="ridge">Ridge</option>
+          </select>
+          <label>Border-Style</label>
+        </div>
+
+        <div class="col s12">
+          <a href="#" class="waves-effect waves-light btn">Save Property</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header">
+      Padding and Margin
+    </div>
+    <div class="collapsible-body">
+      <div class="row input-box">
+        <div class="input-field col s6">
+          <select id="padding-units" name="padding-units">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="rem">rem</option>
+            <option value="%">percentage</option>
+          </select>
+          <label>Padding Units</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="margin-units" name="margin-units">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="rem">rem</option>
+            <option value="%">percentage</option>
+          </select>
+          <label>Margin Units</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="padding-all" name="padding-all" />
+          <label for="padding-all">Padding-All</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="padding-left" name="padding-left" />
+          <label for="padding-left">Padding-Left</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="padding-right" name="padding-right" />
+          <label for="padding-right">Padding-Right</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="padding-top" name="padding-top" />
+          <label for="padding-top">Padding-Top</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="padding-bottom" name="padding-bottom" />
+          <label for="padding-bottom">Padding-Bottom</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="margin-all" name="margin-all" />
+          <label for="margin-all">Margin-All</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="margin-left" name="margin-left" />
+          <label for="margin-left">Margin-Left</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="margin-right" name="margin-right" />
+          <label for="margin-right">Margin-Right</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="margin-top" name="margin-top" />
+          <label for="margin-top">Margin-Top</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="margin-bottom" name="margin-bottom" />
+          <label for="margin-bottom">Margin-Bottom</label>
+        </div>
+        <div class="col s12">
+          <a href="#" class="waves-effect waves-light btn">Save Property</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header">
+      Text
+    </div>
+    <div class="collapsible-body">
+      <div class="input-field col s6">
+        <select id="text-units" name="text-units">
+          <option value="" disabled selected>Choose your option</option>
+          <option value="px">px</option>
+          <option value="em">em</option>
+          <option value="rem">rem</option>
+          <option value="%">percentage</option>
+        </select>
+        <label>Text Units</label>
+      </div>
+      <div class="row input-box">
+        <div class="input-field col s6">
+          <input type="number" id="text-indent" name="text-indent" />
+          <label for="text-indent">Text-Indent</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="letter-spacing" name="letter-spacing" />
+          <label for="letter-spacing">Letter-Spacing</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="word-spacing" name="word-spacing" />
+          <label for="word-spacing">Word-Spacing</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="line-height" name="line-height" />
+          <label for="line-height">Line-Height</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="text-align" name="text-align">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="left">left</option>
+            <option value="right">right</option>
+            <option value="center">center</option>
+            <option value="justify">justify</option>
+          </select>
+          <label>Text-Align</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="text-decoration" name="text-decoration">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="none">none</option>
+            <option value="underline">underline</option>
+            <option value="overline">overline</option>
+            <option value="underline overline">underline overline</option>
+            <option value="line-through">line through</option>
+            <option value="blink">blink</option>
+          </select>
+          <label>Text-Decoration</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="text-transform" name="text-transform">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="none">none</option>
+            <option value="capitalize">capitalize</option>
+            <option value="lowercase">lowercase</option>
+            <option value="uppercase">uppercase</option>
+          </select>
+          <label>Text-Transform</label>
+        </div>
+        <div class="col s12">
+          <a href="#" class="waves-effect waves-light btn">Save Property</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header">
+      Shadows
+    </div>
+    <div class="collapsible-body">
+      <div class="row input-box">
+        <div class="col s12">
+          <h4 class="sub-head">BOX-SHADOW</h4>
+          <hr />
+        </div>
+        <div class="col s6">
+          <label for="">Box-Shadow-Color</label>
+          <input type="color" id="box-shadow-color" name="border-color" />
+        </div>
+        <div class="input-field col s6">
+          <select id="box-shadow-units" name="box-shadow-units">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="rem">rem</option>
+            <option value="%">percentage</option>
+          </select>
+          <label>Box Shadow Units</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            type="number"
+            id="vertical-box-shadow"
+            name="vertical-box-shadow"
+          />
+          <label for="vertical-box-shadow">Vertical-Box-Shadow</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            type="number"
+            id="horizontal-box-shadow"
+            name="horizontal-box-shadow"
+          />
+          <label for="horizontal-box-shadow">Horizontal-Box-Shadow</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="box-shadow-blur" name="box-shadow-blur" />
+          <label for="box-shadow-blur">Box-Shadow-Blur</label>
+        </div>
+        <div class="col s12" id="input-sub-title">
+          <h4 class="sub-head">TEXT-SHADOW</h4>
+          <hr />
+        </div>
+        <div class="col s6">
+          <label for="">Text-Shadow-Color</label>
+          <input type="color" id="text-shadow-color" name="border-color" />
+        </div>
+        <div class="input-field col s6">
+          <select id="text-shadow-units" name="text-shadow-units">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="rem">rem</option>
+            <option value="%">percentage</option>
+          </select>
+          <label>Text Shadow Units</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            type="number"
+            id="vertical-text-shadow"
+            name="vertical-text-shadow"
+          />
+          <label for="vertical-text-shadow">Vertical-Text-Shadow</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            type="number"
+            id="horizontal-text-shadow"
+            name="horizontal-text-shadow"
+          />
+          <label for="horizontal-text-shadow">Horizontal-Text-Shadow</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="text-shadow-blur" name="text-shadow-blur" />
+          <label for="text-shadow-blur">Text-Shadow-Blur</label>
+        </div>
+
+        <div class="col s12">
+          <a href="#" class="waves-effect waves-light btn">Save Property</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header">
+      Display and Positioning
+    </div>
+    <div class="collapsible-body">
+      <div class="row input-box">
+        <div class="input-field col s6">
+          <input type="number" id="top" name="top" />
+          <label for="top">Top</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="bottom" name="bottom" />
+          <label for="bottom">Bottom</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="right" name="right" />
+          <label for="right">Right</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="left" name="left" />
+          <label for="left">Left</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="position-units" name="position-units">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="rem">rem</option>
+            <option value="%">percentage</option>
+          </select>
+          <label>Position Units</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="display" name="display">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="flex">Flex</option>
+            <option value="inline">Inline</option>
+            <option value="inline-block">Inline-Block</option>
+            <option value="block">Block</option>
+            <option value="none">None</option>
+          </select>
+          <label>Display</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="postion" name="postion">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="static">static</option>
+            <option value="relative">relative</option>
+            <option value="absolute">absolute</option>
+            <option value="fixed">fixed</option>
+          </select>
+          <label>Postion</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="flex-direction" name="flex-direction">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="column">Column</option>
+            <option value="column-reverse">Column-Reverse</option>
+            <option value="row">Row</option>
+            <option value="row-reverse">Row-Reverse</option>
+          </select>
+          <label>Flex-Direction</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="flex-wrap" name="flex-wrap">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="wrap">Wrap</option>
+            <option value="nowrap">No Wrap</option>
+            <option value="wrap-reverse">Wrap-Reverse</option>
+          </select>
+          <label>Flex-Wrap</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="float" name="float">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+            <option value="none">None</option>
+          </select>
+          <label>Float</label>
+        </div>
+        <div class="col s12">
+          <a href="#" class="waves-effect waves-light btn">Save Property</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header">
+      Sizing
+    </div>
+    <div class="collapsible-body">
+      <div class="row input-box">
+        <div class="input-field col s6">
+          <input type="number" id="width" name="width" />
+          <label for="width">Width</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="height" name="height" />
+          <label for="height">Height</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="min-width" name="min-width" />
+          <label for="min-width">Min-Width</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="min-height" name="min-height" />
+          <label for="min-height">Min-Height</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="max-width" name="max-width" />
+          <label for="max-width">Max-Width</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="number" id="max-height" name="max-height" />
+          <label for="max-height">Max-Height</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="width-units" name="width-units">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="rem">rem</option>
+            <option value="vw">vw</option>
+            <option value="%">percentage</option>
+          </select>
+          <label>Width Units</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="height-units" name="height-units">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="px">px</option>
+            <option value="em">em</option>
+            <option value="rem">rem</option>
+            <option value="vh">vh</option>
+            <option value="%">percentage</option>
+          </select>
+          <label>Height Units</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="oveflow-x" name="overflow-x">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="auto">Auto</option>
+            <option value="hidden">Hidden</option>
+            <option value="scroll">Scroll</option>
+            <option value="visible">Visible</option>
+          </select>
+          <label>Overflow-X</label>
+        </div>
+        <div class="input-field col s6">
+          <select id="overflow-y" name="overflow-y">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="auto">Auto</option>
+            <option value="hidden">Hidden</option>
+            <option value="scroll">Scroll</option>
+            <option value="visible">Visible</option>
+          </select>
+          <label>Overflow-Y</label>
+        </div>
+        <div class="col s12">
+          <a href="#" class="waves-effect waves-light btn">Save Property</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="collapsible-header">
+      Others
+    </div>
+    <div class="collapsible-body">
+      <div class="">
+        <div class="row input-box">
+          <div class="input-field col s6">
+            <input type="number" id="z-index" name="z-index" />
+            <label for="z-index">Z-Index</label>
+            <span class="helper-text">Avoid Using Negative Z-index</span>
+          </div>
+          <div class="input-field col s6">
+            <select id="visibilty" name="visibilty">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="visible">Visible</option>
+              <option value="hidden">Hidden</option>
+            </select>
+            <label>Visibilty</label>
+          </div>
+          <div class="col s12">
+            <a href="#" class="waves-effect waves-light btn">Save Property</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </li>
 </ul>
