@@ -90,6 +90,7 @@ body {
   padding: 5px;
   padding-bottom: 10px;
   border-left: 10px solid #d72638;
+  font-size: 2.2em;
 }
 
 .main-area .sheet-area {
@@ -103,6 +104,7 @@ body {
   width: 29%;
   margin: 2%;
   position: relative;
+  font-size: 0.9em;
 }
 
 .sheet-card .edit {
@@ -115,7 +117,7 @@ body {
 .main-area .card-title {
   padding: 0;
   margin: 0;
-  font-size: 3em;
+  font-size: 2em;
   margin-top: -2px;
   margin-bottom: 12px;
   border-bottom: 1px solid black;
