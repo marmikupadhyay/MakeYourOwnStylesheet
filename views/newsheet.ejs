@@ -8,7 +8,11 @@
         <label for="sheet-title">Name Of Sheet</label>
       </div>
       <div class="col s2 valign-wrapper btn-box">
-        <button class="btn waves-effect waves-light" name="action">
+        <button
+          class="btn waves-effect waves-light disabled"
+          name="action"
+          id="save"
+        >
           Save
           <i class="material-icons right">save</i>
         </button>
@@ -22,16 +26,16 @@
             <label for="component-title">Name Of Component</label>
           </div>
           <div class="input-field col s4">
-            <select>
-              <option value="" disabled selected>Choose your option</option>
-              <option value="class">Class</option>
+            <select id="component-type">
+              <option value="" disabled>Choose your option</option>
+              <option value="class" selected>Class</option>
               <option value="id">Id</option>
             </select>
             <label>Type of Component</label>
           </div>
           <div class="col s4 valign-wrapper btn-box">
             <button
-              class="btn waves-effect waves-light"
+              class="btn waves-effect waves-light disabled"
               id="component-btn"
               type="submit"
               name="action"
@@ -46,7 +50,7 @@
             <div class="card blue-grey hoverable darken-1 code-card">
               <div class="card-content white-text">
                 <span class="card-title">Code Preview</span>
-                <blockquote class="grey lighten-2 black-text">
+                <blockquote class="grey lighten-2 black-text code">
                   classname { color: black; margin: 20px; padding: 10px;
                   border:1px solid black; }
                 </blockquote>

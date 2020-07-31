@@ -1,5 +1,30 @@
+var cssString;
+
+//Document Loaded Listener
 document.addEventListener("DOMContentLoaded", e => {
   csscode = {};
+  cssString = {};
+
+  //
+  document.getElementById("sheet-title").addEventListener("input", e => {
+    if (e.target.value == "") {
+      document.getElementById("save").className += " disabled";
+    } else if (document.getElementById("save").classList.contains("disabled")) {
+      document.getElementById("save").classList.remove("disabled");
+    }
+  });
+
+  document.getElementById("component-title").addEventListener("input", e => {
+    if (e.target.value == "") {
+      document.getElementById("component-btn").className += " disabled";
+    } else if (
+      document.getElementById("component-btn").classList.contains("disabled")
+    ) {
+      document.getElementById("component-btn").classList.remove("disabled");
+    }
+  });
+
+  //Adding click listeners to the properties buttons
   document.querySelector(".bg-btn").addEventListener("click", e => {
     background();
   });
@@ -9,41 +34,82 @@ document.addEventListener("DOMContentLoaded", e => {
   document.querySelector(".border-btn").addEventListener("click", e => {
     border();
   });
-
   document.querySelector(".pnm-btn").addEventListener("click", e => {
     marginAndPadding();
   });
-
   document.querySelector(".text-btn").addEventListener("click", e => {
     text();
   });
-
   document.querySelector(".shadow-btn").addEventListener("click", e => {
     shadows();
   });
-
   document.querySelector(".display-btn").addEventListener("click", e => {
     displayAndPositioning();
   });
-
   document.querySelector(".size-btn").addEventListener("click", e => {
     sizing();
   });
-
   document.querySelector(".others-btn").addEventListener("click", e => {
     others();
   });
 
+  //Adding click listener to the add component btn
   document.getElementById("component-btn").addEventListener("click", e => {
-    var cssString = "";
+    var cmpName = document.getElementById("component-title").value;
+    if (document.getElementById("component-type").value == "class") {
+      cssString[cmpName] = ".";
+    }
+    if (document.getElementById("component-type").value == "id") {
+      cssString[cmpName] = "#";
+    }
+
+    cssString[cmpName] += `${
+      document.getElementById("component-title").value
+    }{`;
     for (property in csscode) {
-      if (csscode[property] != "") {
-        cssString += `${property}:${csscode[property]};`;
+      if (property == "background-image") {
+        if (csscode[property] == "url()") {
+          continue;
+        }
+      }
+      var NA = ["", "px", "%", "em", "rem", "vh", "vw"];
+      if (!NA.includes(csscode[property])) {
+        cssString[cmpName] += `${property}:${csscode[property]};`;
       }
     }
-    console.log(cssString);
+    cssString[cmpName] += "}";
+
+    var codeBlock = document.querySelector(".code");
+    codeBlock.innerHTML = "";
+    for (var i = 0; i < cssString[cmpName].length; i++) {
+      if (cssString[cmpName][i] == ";" || cssString[cmpName][i] == "{") {
+        codeBlock.innerHTML += `${cssString[cmpName][i]}</br>`;
+      } else {
+        codeBlock.innerHTML += `${cssString[cmpName][i]}`;
+      }
+    }
   });
 });
+
+//Save Btn click listener
+document.getElementById("save").addEventListener("click", e => {
+  finalCss = "";
+  for (property in cssString) {
+    finalCss += `${cssString[property]}`;
+  }
+  console.log(finalCss);
+  saveSheet();
+});
+
+//Function to download the sheet
+function saveSheet() {
+  var blob = new Blob([`${finalCss}`], {
+    type: "text/plain;charset=utf-8"
+  });
+  saveAs(blob, `${document.getElementById("sheet-title").value}.css`);
+}
+
+//All the functions to take input and store in object
 
 function background() {
   csscode["background-color"] = document.getElementById("bg-color").value;
@@ -216,5 +282,5 @@ function sizing() {
 
 function others() {
   csscode["z-index"] = document.getElementById("z-index").value;
-  csscode["visibilty"] = document.getElementById("visibilty").value;
+  csscode["visibility"] = document.getElementById("visibility").value;
 }

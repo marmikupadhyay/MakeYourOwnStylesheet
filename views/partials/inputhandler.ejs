@@ -62,8 +62,8 @@
         </div>
         <div class="input-field col s6">
           <select id="font-units" name="font-units">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="px">px</option>
+            <option value="" disabled>Choose your option</option>
+            <option value="px" selected>px</option>
             <option value="em">em</option>
             <option value="rem">rem</option>
             <option value="%">percentage</option>
@@ -131,8 +131,8 @@
         </div>
         <div class="input-field col s6">
           <select id="border-units" name="border-units">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="px">px</option>
+            <option value="" disabled>Choose your option</option>
+            <option value="px" selected>px</option>
             <option value="em">em</option>
             <option value="rem">rem</option>
             <option value="%">percentage</option>
@@ -196,8 +196,8 @@
       <div class="row input-box">
         <div class="input-field col s6">
           <select id="padding-units" name="padding-units">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="px">px</option>
+            <option value="" disabled>Choose your option</option>
+            <option value="px" selected>px</option>
             <option value="em">em</option>
             <option value="rem">rem</option>
             <option value="%">percentage</option>
@@ -206,8 +206,8 @@
         </div>
         <div class="input-field col s6">
           <select id="margin-units" name="margin-units">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="px">px</option>
+            <option value="" disabled>Choose your option</option>
+            <option value="px" selected>px</option>
             <option value="em">em</option>
             <option value="rem">rem</option>
             <option value="%">percentage</option>
@@ -268,7 +268,7 @@
       <div class="input-field col s6">
         <select id="text-units" name="text-units">
           <option value="" disabled selected>Choose your option</option>
-          <option value="px">px</option>
+          <option value="px" selected>px</option>
           <option value="em">em</option>
           <option value="rem">rem</option>
           <option value="%">percentage</option>
@@ -346,8 +346,8 @@
         </div>
         <div class="input-field col s6">
           <select id="box-shadow-units" name="box-shadow-units">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="px">px</option>
+            <option value="" disabled>Choose your option</option>
+            <option value="px" selected>px</option>
             <option value="em">em</option>
             <option value="rem">rem</option>
             <option value="%">percentage</option>
@@ -357,6 +357,7 @@
         <div class="input-field col s6">
           <input
             type="number"
+            value="0"
             id="vertical-box-shadow"
             name="vertical-box-shadow"
           />
@@ -365,13 +366,19 @@
         <div class="input-field col s6">
           <input
             type="number"
+            value="0"
             id="horizontal-box-shadow"
             name="horizontal-box-shadow"
           />
           <label for="horizontal-box-shadow">Horizontal-Box-Shadow</label>
         </div>
         <div class="input-field col s6">
-          <input type="number" id="box-shadow-blur" name="box-shadow-blur" />
+          <input
+            type="number"
+            id="box-shadow-blur"
+            value="0"
+            name="box-shadow-blur"
+          />
           <label for="box-shadow-blur">Box-Shadow-Blur</label>
         </div>
         <div class="col s12" id="input-sub-title">
@@ -384,8 +391,8 @@
         </div>
         <div class="input-field col s6">
           <select id="text-shadow-units" name="text-shadow-units">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="px">px</option>
+            <option value="" disabled>Choose your option</option>
+            <option value="px" selected>px</option>
             <option value="em">em</option>
             <option value="rem">rem</option>
             <option value="%">percentage</option>
@@ -397,6 +404,7 @@
             type="number"
             id="vertical-text-shadow"
             name="vertical-text-shadow"
+            value="0"
           />
           <label for="vertical-text-shadow">Vertical-Text-Shadow</label>
         </div>
@@ -404,12 +412,18 @@
           <input
             type="number"
             id="horizontal-text-shadow"
+            value="0"
             name="horizontal-text-shadow"
           />
           <label for="horizontal-text-shadow">Horizontal-Text-Shadow</label>
         </div>
         <div class="input-field col s6">
-          <input type="number" id="text-shadow-blur" name="text-shadow-blur" />
+          <input
+            type="number"
+            id="text-shadow-blur"
+            value="0"
+            name="text-shadow-blur"
+          />
           <label for="text-shadow-blur">Text-Shadow-Blur</label>
         </div>
 
@@ -443,8 +457,8 @@
         </div>
         <div class="input-field col s6">
           <select id="position-units" name="position-units">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="px">px</option>
+            <option value="" disabled>Choose your option</option>
+            <option value="px" selected>px</option>
             <option value="em">em</option>
             <option value="rem">rem</option>
             <option value="%">percentage</option>
@@ -538,8 +552,8 @@
         </div>
         <div class="input-field col s6">
           <select id="width-units" name="width-units">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="px">px</option>
+            <option value="" disabled>Choose your option</option>
+            <option value="px" selected>px</option>
             <option value="em">em</option>
             <option value="rem">rem</option>
             <option value="vw">vw</option>
@@ -549,8 +563,8 @@
         </div>
         <div class="input-field col s6">
           <select id="height-units" name="height-units">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="px">px</option>
+            <option value="" disabled>Choose your option</option>
+            <option value="px" selected>px</option>
             <option value="em">em</option>
             <option value="rem">rem</option>
             <option value="vh">vh</option>
@@ -597,12 +611,12 @@
             <span class="helper-text">Avoid Using Negative Z-index</span>
           </div>
           <div class="input-field col s6">
-            <select id="visibilty" name="visibilty">
+            <select id="visibility" name="visibility">
               <option value="" disabled selected>Choose your option</option>
               <option value="visible">Visible</option>
               <option value="hidden">Hidden</option>
             </select>
-            <label>Visibilty</label>
+            <label>Visibility</label>
           </div>
           <div class="col s12">
             <a class="others-btn waves-effect waves-light btn">Save Property</a>
