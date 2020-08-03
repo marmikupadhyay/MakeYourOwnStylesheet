@@ -5,7 +5,7 @@ const passport = require("passport");
 const User = require("../models/User");
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
 
-router.get("/dashboard", (req, res, next) => {
+router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
   res.render("dashboard");
 });
 
@@ -43,7 +43,7 @@ router.post("/login", (req, res, next) => {
         if (err) {
           return next(err);
         }
-        return res.redirect("/user/panel");
+        return res.redirect("/user/dashboard");
       });
     })(req, res, next);
   }
@@ -91,7 +91,7 @@ router.post("/signup", (req, res) => {
                     "success_msg",
                     "You are now registered and can log in"
                   );
-                  res.redirect("/login");
+                  res.redirect("/user/login");
                 })
                 .catch(err => {
                   console.log(err);
@@ -104,6 +104,13 @@ router.post("/signup", (req, res) => {
         console.log(err);
       });
   }
+});
+
+// Logout
+router.get("/logout", (req, res) => {
+  req.logout();
+  req.flash("success_msg", "You are logged out");
+  res.redirect("/user/login");
 });
 
 module.exports = router;

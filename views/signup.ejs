@@ -2,8 +2,9 @@
 <div class="wrapper">
   <div class="register-box z-depth-5">
     <h1 class="heading" id="form-title">MYOS</h1>
+    <%- include("./partials/messages.ejs") %>
     <div class="form-container">
-      <form class="col s12">
+      <form class="col s12" action="/user/signup" method="POST">
         <div class="row deep-orange lighten-5" id="form-box">
           <div class="input-field col s12">
             <i class="material-icons prefix">account_circle</i>

@@ -59,6 +59,10 @@ app.use(function (req, res, next) {
   next();
 });
 
+//Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.get("/", (req, res, next) => {
   res.redirect("/user/dashboard");
 });
