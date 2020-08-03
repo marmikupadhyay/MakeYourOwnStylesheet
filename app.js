@@ -9,6 +9,27 @@ const session = require("express-session");
 //INITALIZE APP
 const app = express();
 
+//Passport config
+require("./config/passport")(passport);
+
+//Connecting to mongodb
+mongoose.connect(
+  "mongodb+srv://marmik:mar0712@cluster0-otaph.mongodb.net/myos?retryWrites=true&w=majority",
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+  }
+);
+let db = mongoose.connection;
+
+db.once("open", () => {
+  console.log("Connected To Database");
+});
+
+db.on("error", err => {
+  console.log(err);
+});
+
 //Setting PUBLIC static folder
 app.use("/", express.static(path.join(__dirname, "public")));
 

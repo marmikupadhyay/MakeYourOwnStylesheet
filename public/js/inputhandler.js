@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", e => {
   csscode = {};
   cssString = {};
 
-  //
+  //Disabling Buttons If file name not provided
   document.getElementById("sheet-title").addEventListener("input", e => {
     if (e.target.value == "") {
       document.getElementById("save").className += " disabled";
