@@ -21,11 +21,17 @@
           <h1 class="card-title valign-wrapper">
             <%= sheet.filename %>
           </h1>
-          <a
-            href="/sheet/edit/<%= sheet._id %>"
-            class="btn-floating waves-effect waves-light grey darken-4 edit"
-            ><i class="material-icons">edit</i></a
-          >
+          <div class="sheet-card-btns">
+            <a
+              href="/sheet/edit/<%= sheet._id %>"
+              class="btn-floating waves-effect waves-light darken-4 edit"
+              ><i class="material-icons">edit</i></a
+            ><a
+              href="/sheet/delete/<%= sheet._id %>"
+              class="btn-floating waves-effect waves-light grey darken-4 delete"
+              ><i class="material-icons">delete</i></a
+            >
+          </div>
           <span class=""
             >I am a very simple card. I am good at containing small bits of
             information. I am convenient because I require little markup to use

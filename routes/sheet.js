@@ -105,4 +105,16 @@ router.get("/code/:id", (req, res, next) => {
     });
 });
 
+//Handling Sheet Deletion
+router.get("/delete/:id", ensureAuthenticated, (req, res) => {
+  Sheet.findOneAndDelete({ _id: req.params.id })
+    .then(sheet => {
+      req.flash("success_msg", "Invite Deleted");
+      res.redirect("/user/dashboard");
+    })
+    .catch(err => {
+      consolelog(err);
+    });
+});
+
 module.exports = router;

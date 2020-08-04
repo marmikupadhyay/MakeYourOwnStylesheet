@@ -23,11 +23,16 @@ body {
   font-size: 0.9em;
 }
 
-.sheet-card .edit {
+.sheet-card .sheet-card-btns {
   position: absolute;
   right: 0;
   top: 0;
   margin: 10px;
+}
+
+.sheet-card .edit {
+  margin-right: 10px;
+  background: #9c3b6f;
 }
 
 .main-area .card-title {
