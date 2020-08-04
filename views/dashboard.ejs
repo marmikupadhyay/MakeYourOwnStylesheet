@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/dashboard.css" />
 <%- include("./partials/nav.ejs") %>
 <div class="row main-row">
   <%- include("./partials/sidebar.ejs",{active:1}) %>
@@ -15,13 +16,13 @@
     </div>
     <div class="row">
       <div class="col s12 sheet-area">
-        <% for(var i=0;i<=3;i++) { %>
+        <% sheets.forEach(sheet => { %>
         <div class="card-panel sheet-card grey lighten-2 z-depth-1 hoverable">
           <h1 class="card-title valign-wrapper">
-            Title
+            <%= sheet.filename %>
           </h1>
           <a
-            href="#"
+            href="/sheet/edit/<%= sheet._id %>"
             class="btn-floating waves-effect waves-light grey darken-4 edit"
             ><i class="material-icons">edit</i></a
           >
@@ -32,7 +33,7 @@
             frameworks.
           </span>
         </div>
-        <% } %>
+        <% }) %>
         <div
           class="card-panel sheet-card grey lighten-2 center-align z-depth-1 hoverable"
         >
@@ -40,7 +41,7 @@
             Create New
           </h1>
           <a
-            href="#"
+            href="/sheet/new"
             class="btn-floating btn-large waves-effect waves-light red"
             ><i class="material-icons large">add</i></a
           >

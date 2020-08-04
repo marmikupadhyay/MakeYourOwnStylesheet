@@ -1,9 +1,13 @@
 var cssString;
+var list = [];
+var sheetId;
+cssString = {};
 
 //Document Loaded Listener
 document.addEventListener("DOMContentLoaded", e => {
+  getListItems();
   csscode = {};
-  cssString = {};
+  getCode();
 
   //Disabling Buttons If file name not provided
   document.getElementById("sheet-title").addEventListener("input", e => {
@@ -56,6 +60,10 @@ document.addEventListener("DOMContentLoaded", e => {
   //Adding click listener to the add component btn
   document.getElementById("component-btn").addEventListener("click", e => {
     var cmpName = document.getElementById("component-title").value;
+    list.push(cmpName + `: ${document.getElementById("component-type").value}`);
+    list = [...new Set(list)];
+    showList(list);
+
     if (document.getElementById("component-type").value == "class") {
       cssString[cmpName] = ".";
     }
@@ -89,10 +97,59 @@ document.addEventListener("DOMContentLoaded", e => {
       }
     }
   });
+
+  //Search Mechanism for components
+  var cmpsearch = document.getElementById("charinput");
+  cmpsearch.addEventListener("input", e => {
+    var searchText = cmpsearch.value;
+    let matches = list.filter(listitem => {
+      const regex = new RegExp(`^${searchText}`, "gi");
+      return listitem.match(regex);
+    });
+    if (searchText.length === 0) {
+      matches = list;
+    }
+    showList(matches);
+  });
 });
+
+//Function to get the Initial List Items
+async function getListItems() {
+  sheetId = document.getElementById("sheet-id").innerHTML;
+  const res = await fetch(`/sheet/cmpnames/${sheetId}`);
+  var data = await res.json();
+  list = data.cmpNames;
+  showList(list);
+}
+
+//Sheet Contents
+async function getCode() {
+  sheetId = document.getElementById("sheet-id").innerHTML;
+  const res = await fetch(`/sheet/code/${sheetId}`);
+  var data = await res.json();
+  cssString = data.code;
+}
+
+//Function to display the list
+function showList(list) {
+  var container = document.getElementById("all-components");
+  container.innerHTML = "";
+
+  list.forEach(listitem => {
+    var item = document.createElement("li");
+    item.innerHTML = listitem;
+    item.className = "collection-item";
+    container.appendChild(item);
+  });
+}
 
 //Save Btn click listener
 document.getElementById("save").addEventListener("click", e => {
+  postSheet().then(console.log("done"));
+});
+
+//Download ClickListener
+document.getElementById("download").addEventListener("click", e => {
   finalCss = "";
   for (property in cssString) {
     finalCss += `${cssString[property]}`;
@@ -100,6 +157,21 @@ document.getElementById("save").addEventListener("click", e => {
   console.log(finalCss);
   saveSheet();
 });
+
+//Post toPutSheet to database
+async function postSheet() {
+  sheetId = document.getElementById("sheet-id").innerHTML;
+  var sheetTitle = document.getElementById("sheet-title").value;
+  try {
+    const response = await axios.post(`/sheet/save/${sheetId}`, {
+      sheetTitle,
+      content: cssString
+    });
+    console.log(response);
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 //Function to download the sheet
 function saveSheet() {

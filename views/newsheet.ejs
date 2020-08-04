@@ -1,13 +1,20 @@
+<link rel="stylesheet" href="/css/newsheet.css" />
 <%- include("./partials/nav.ejs") %>
 <div class="row main-row">
   <%- include("./partials/sidebar.ejs",{active:2}) %>
   <section class="workspace">
     <div class="title-bar col s12">
-      <div class="input-field col s10">
-        <input id="sheet-title" type="text" class="validate" />
+      <div class="hide" id="sheet-id"><%= id %></div>
+      <div class="input-field col s8">
+        <input
+          id="sheet-title"
+          type="text"
+          class="validate"
+          value="<%= title %>"
+        />
         <label for="sheet-title">Name Of Sheet</label>
       </div>
-      <div class="col s2 valign-wrapper btn-box">
+      <div class="col s4 valign-wrapper btn-box">
         <button
           class="btn waves-effect waves-light disabled"
           name="action"
@@ -15,6 +22,14 @@
         >
           Save
           <i class="material-icons right">save</i>
+        </button>
+        <button
+          class="btn waves-effect waves-light green"
+          name="action"
+          id="download"
+        >
+          Download
+          <i class="material-icons right">get_app</i>
         </button>
       </div>
     </div>
@@ -77,11 +92,7 @@
           <label for="charinput" class="">Search Existing Component</label>
         </div>
         <div class="component-list">
-          <ul class="collection">
-            <% for(var i=0;i<=12;i++) { %>
-            <li class="collection-item">Text</li>
-            <% } %>
-          </ul>
+          <ul class="collection" id="all-components"></ul>
         </div>
       </div>
     </div>
@@ -94,5 +105,6 @@
       document.querySelectorAll(".collapsible"),
       {}
     );
+    M.updateTextFields();
   });
 </script>

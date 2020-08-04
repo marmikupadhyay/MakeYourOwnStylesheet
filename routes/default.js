@@ -3,10 +3,18 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const User = require("../models/User");
+const Sheet = require("../models/Sheet");
+
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
 
 router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
-  res.render("dashboard");
+  Sheet.find({ author: req.user._id })
+    .then(sheets => {
+      res.render("dashboard", { sheets });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 //Get Request Routes

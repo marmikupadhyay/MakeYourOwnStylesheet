@@ -1,0 +1,40 @@
+body {
+  background: rgb(248, 234, 233, 0.8);
+}
+
+.main-area {
+  margin-left: 4.5% !important;
+  width: 70.5%;
+  margin-right: 0 !important;
+  padding: 10px;
+}
+
+.main-area .sheet-area {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sheet-card {
+  width: 29%;
+  margin: 2%;
+  position: relative;
+  font-size: 0.9em;
+}
+
+.sheet-card .edit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 10px;
+}
+
+.main-area .card-title {
+  padding: 0;
+  margin: 0;
+  font-size: 2em;
+  margin-top: -2px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid black;
+}
