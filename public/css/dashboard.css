@@ -21,18 +21,27 @@ body {
   margin: 2%;
   position: relative;
   font-size: 0.9em;
+  border-radius: 3%;
 }
 
 .sheet-card .sheet-card-btns {
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin: 10px;
+  box-shadow: inset 0px 0px 10px black;
+  border-radius: 3%;
+}
+
+.sheet-card .sheet-card-btns .btn {
+  margin: 10px 0;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 1.2em;
 }
 
 .sheet-card .edit {
-  margin-right: 10px;
   background: #9c3b6f;
+}
+.sheet-card .delete {
+  background: #c02739;
 }
 
 .main-area .card-title {
@@ -42,4 +51,9 @@ body {
   margin-top: -2px;
   margin-bottom: 12px;
   border-bottom: 1px solid black;
+}
+
+.input-box .btn-box {
+  padding: 20px;
+  text-align: center;
 }

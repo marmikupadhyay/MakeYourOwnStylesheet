@@ -8,9 +8,18 @@ const Sheet = require("../models/Sheet");
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
 
 router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
+  var sentSheets;
   Sheet.find({ author: req.user._id })
     .then(sheets => {
-      res.render("dashboard", { sheets });
+      if (req.query.s == undefined) {
+        sentSheets = sheets;
+      } else {
+        sentSheets = sheets.filter(sheet => {
+          const regex = new RegExp(`^${req.query.s}`, "gi");
+          return sheet.filename.match(regex);
+        });
+      }
+      res.render("dashboard", { sheets: sentSheets });
     })
     .catch(err => {
       console.log(err);

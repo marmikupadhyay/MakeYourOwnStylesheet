@@ -19,6 +19,7 @@
           class="btn waves-effect waves-light disabled"
           name="action"
           id="save"
+          onclick="M.toast({html: 'Sheet Saved'})"
         >
           Save
           <i class="material-icons right">save</i>
@@ -52,8 +53,8 @@
             <button
               class="btn waves-effect waves-light disabled"
               id="component-btn"
-              type="submit"
               name="action"
+              onclick="M.toast({html: 'Component Added'})"
             >
               Add to sheet
               <i class="material-icons right">add</i>
@@ -86,6 +87,7 @@
         <%- include("./partials/inputhandler.ejs") %>
       </div>
       <div class="col s4">
+        <%- include("./partials/messages.ejs") %>
         <div class="input-field col s12">
           <i class="material-icons prefix">search</i>
           <input type="text" id="charinput" />
@@ -108,3 +110,4 @@
     M.updateTextFields();
   });
 </script>
+<script src="/js/inputhandler.js"></script>

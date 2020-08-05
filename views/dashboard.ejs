@@ -7,11 +7,17 @@
       <h1 class="z-depth-1">Your StyleSheets</h1>
       <hr />
     </div>
-    <div class="input-box">
-      <div class="input-field col s12">
+    <div class="input-box row">
+      <div class="input-field col s9">
         <i class="material-icons prefix">search</i>
-        <input type="text" id="charinput" />
+        <input type="text" id="search-sheets" />
         <label for="charinput" class="">Search Sheets</label>
+      </div>
+      <div class="col s3 btn-box">
+        <button class="btn waves-effect waves-light" id="search-btn">
+          Search
+          <i class="material-icons right">search</i>
+        </button>
       </div>
     </div>
     <div class="row">
@@ -21,22 +27,29 @@
           <h1 class="card-title valign-wrapper">
             <%= sheet.filename %>
           </h1>
-          <div class="sheet-card-btns">
-            <a
-              href="/sheet/edit/<%= sheet._id %>"
-              class="btn-floating waves-effect waves-light darken-4 edit"
-              ><i class="material-icons">edit</i></a
-            ><a
-              href="/sheet/delete/<%= sheet._id %>"
-              class="btn-floating waves-effect waves-light grey darken-4 delete"
-              ><i class="material-icons">delete</i></a
-            >
-          </div>
-          <span class=""
-            >I am a very simple card. I am good at containing small bits of
-            information. I am convenient because I require little markup to use
-            effectively. I am similar to what is called a panel in other
-            frameworks.
+          <span class="">
+            <div class="sheet-card-btns">
+              <a
+                href="/sheet/edit/<%= sheet._id %>"
+                class="btn waves-effect waves-light edit z-depth-4"
+              >
+                Edit
+                <i class="material-icons right">edit</i>
+              </a>
+              <a
+                href="/sheet/edit/<%= sheet._id %>"
+                class="btn waves-effect waves-light download green z-depth-4"
+              >
+                Download
+                <i class="material-icons right">get_app</i> </a
+              ><a
+                href="/sheet/delete/<%= sheet._id %>"
+                class="btn waves-effect waves-light delete z-depth-4"
+              >
+                Delete
+                <i class="material-icons right">delete</i>
+              </a>
+            </div>
           </span>
         </div>
         <% }) %>
@@ -57,3 +70,4 @@
   </div>
   <%- include("./partials/right-side-bar.ejs") %>
 </div>
+<script src="/js/main.js"></script>

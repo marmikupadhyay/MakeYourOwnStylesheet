@@ -8,7 +8,7 @@ router.get("/new", ensureAuthenticated, (req, res, next) => {
   var newSheet = new Sheet({
     author: req.user._id,
     filename: "untitled",
-    content: ""
+    content: {}
   });
   newSheet
     .save()
@@ -33,18 +33,6 @@ router.get("/edit/:id", ensureAuthenticated, (req, res, next) => {
 
 router.post("/save/:id", (req, res, next) => {
   const { sheetTitle, content } = req.body;
-  console.log(sheetTitle, content);
-  Sheet.find({}).exec((err, sheets) => {
-    if (err) {
-      console.log(err);
-    }
-    sheets.forEach(sheet => {
-      if (sheet.filename == sheetTitle) {
-        req.flash("error_msg", "Filename already Taken");
-        res.redirect(`/sheet/edit/${req.params.id}`);
-      }
-    });
-  });
   var updatedSheet = { $set: { filename: sheetTitle, content } };
   Sheet.findOneAndUpdate({ _id: req.params.id }, updatedSheet)
     .then(sheet => {
