@@ -2,10 +2,17 @@ var cssString;
 var list = [];
 var sheetId;
 cssString = {};
+var edits;
+var deletes;
+var check = 0;
 
 //Document Loaded Listener
 document.addEventListener("DOMContentLoaded", e => {
   getListItems();
+
+  edits = document.querySelectorAll(".cmp-edit");
+  deletes = document.querySelectorAll(".cmp-delete");
+
   csscode = {};
   getCode();
 
@@ -138,9 +145,51 @@ function showList(list) {
   list.forEach(listitem => {
     var item = document.createElement("li");
     item.innerHTML = listitem;
+    var parentCmp = "";
+    for (var i = 0; i < listitem.length; i++) {
+      if (listitem[i] != ":") {
+        parentCmp += listitem[i];
+      } else {
+        break;
+      }
+    }
     item.className = "collection-item";
+    // item.innerHTML += `
+    // <div class="cmp-btn-box">
+    // <a class="btn-floating waves-effect cmp-edit waves-light" id="${parentCmp}"><i class="material-icons">edit</i></a>
+    // <a class="btn-floating waves-effect cmp-delete waves-light red" id="${parentCmp}"><i class="material-icons">delete</i></a>
+    // </div>`;
     container.appendChild(item);
   });
+  if (!check) {
+    //Click Listeners for edit and delete of components
+
+    edits = document.querySelectorAll(".cmp-edit");
+    deletes = document.querySelectorAll(".cmp-delete");
+
+    edits.forEach(btn => {
+      btn.addEventListener("click", e => {
+        var cmpName = e.target.parentElement.id;
+        console.log(cssString[cmpName]);
+      });
+    });
+
+    deletes.forEach(btn => {
+      btn.addEventListener("click", e => {
+        var cmpName = e.target.parentElement.id;
+        console.log(cmpName);
+        delete cssString[cmpName];
+        for (var i = 0; i < list.length; i++) {
+          if (list[i] == cmpName) {
+            list.splice(i, 1);
+            i--;
+          }
+        }
+        showList(list);
+      });
+    });
+  }
+  check++;
 }
 
 //Save Btn click listener

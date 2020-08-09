@@ -3,6 +3,8 @@ const router = express.Router();
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
 const Sheet = require("../models/Sheet");
 const { response } = require("express");
+const { saveAs } = require("file-saver");
+const Blob = require("cross-blob");
 
 router.get("/new", ensureAuthenticated, (req, res, next) => {
   var newSheet = new Sheet({
@@ -83,7 +85,11 @@ router.get("/code/:id", (req, res, next) => {
         res.json({ error: "Sheet does not exist" });
       } else {
         res.status(200);
-        res.json({ code: sheet.content });
+        if (sheet.content == null) {
+          res.json({ code: {} });
+        } else {
+          res.json({ code: sheet.content });
+        }
       }
     })
     .catch(err => {
@@ -97,11 +103,33 @@ router.get("/code/:id", (req, res, next) => {
 router.get("/delete/:id", ensureAuthenticated, (req, res) => {
   Sheet.findOneAndDelete({ _id: req.params.id })
     .then(sheet => {
-      req.flash("success_msg", "Invite Deleted");
+      req.flash("success_msg", "Sheet Deleted");
       res.redirect("/user/dashboard");
     })
     .catch(err => {
       consolelog(err);
+    });
+});
+
+// Download Sheet Route
+
+router.get("/download/:id", ensureAuthenticated, (req, res, next) => {
+  var finalCss = "";
+
+  Sheet.findOne({ _id: req.params.id })
+    .then(sheet => {
+      var cssString = sheet.content;
+      for (property in cssString) {
+        finalCss += `${cssString[property]}`;
+      }
+      var blob = new Blob([`${finalCss}`], {
+        type: "text/plain;charset=utf-8"
+      });
+      saveAs(blob, `${sheet.filename}.css`);
+      res.redirect("/user/dashboard");
+    })
+    .catch(err => {
+      console.log(err);
     });
 });
 

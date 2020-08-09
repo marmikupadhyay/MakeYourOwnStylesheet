@@ -101,3 +101,26 @@ input[type="color"] {
 .code {
   box-shadow: inset 0 0 10px #000000;
 }
+
+#all-components .collection-item {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.cmp-btn-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.cmp-edit {
+  margin-right: 10px;
+  background: #9c3b6f;
+}
+
+.cmp-delete {
+}
+
+.cmp-btn-box i {
+  z-index: -1;
+}
