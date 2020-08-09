@@ -26,11 +26,18 @@ document.addEventListener("DOMContentLoaded", e => {
   });
 
   document.getElementById("component-title").addEventListener("input", e => {
+    var inputBtns = document.querySelectorAll(".input-btn");
     if (e.target.value == "") {
       document.getElementById("component-btn").className += " disabled";
+      inputBtns.forEach(btn => {
+        btn.className += " disabled";
+      });
     } else if (
       document.getElementById("component-btn").classList.contains("disabled")
     ) {
+      inputBtns.forEach(btn => {
+        btn.classList.remove("disabled");
+      });
       document.getElementById("component-btn").classList.remove("disabled");
     }
   });
@@ -38,30 +45,39 @@ document.addEventListener("DOMContentLoaded", e => {
   //Adding click listeners to the properties buttons
   document.querySelector(".bg-btn").addEventListener("click", e => {
     background();
+    showPreview();
   });
   document.querySelector(".font-btn").addEventListener("click", e => {
     fonts();
+    showPreview();
   });
   document.querySelector(".border-btn").addEventListener("click", e => {
     border();
+    showPreview();
   });
   document.querySelector(".pnm-btn").addEventListener("click", e => {
     marginAndPadding();
+    showPreview();
   });
   document.querySelector(".text-btn").addEventListener("click", e => {
     text();
+    showPreview();
   });
   document.querySelector(".shadow-btn").addEventListener("click", e => {
     shadows();
+    showPreview();
   });
   document.querySelector(".display-btn").addEventListener("click", e => {
     displayAndPositioning();
+    showPreview();
   });
   document.querySelector(".size-btn").addEventListener("click", e => {
     sizing();
+    showPreview();
   });
   document.querySelector(".others-btn").addEventListener("click", e => {
     others();
+    showPreview();
   });
 
   //Adding click listener to the add component btn
@@ -93,17 +109,47 @@ document.addEventListener("DOMContentLoaded", e => {
       }
     }
     cssString[cmpName] += "}";
+  });
+
+  //function to show preview of the properties
+  function showPreview() {
+    var cmpName = document.getElementById("component-title").value;
+    var tempCode = "";
+    var codetext = {};
+    if (document.getElementById("component-type").value == "class") {
+      codetext[cmpName] = ".";
+    }
+    if (document.getElementById("component-type").value == "id") {
+      codetext[cmpName] = "#";
+    }
+
+    codetext[cmpName] += `${document.getElementById("component-title").value}{`;
+    for (property in csscode) {
+      if (property == "background-image") {
+        if (csscode[property] == "url()") {
+          continue;
+        }
+      }
+      var NA = ["", "px", "%", "em", "rem", "vh", "vw"];
+      if (!NA.includes(csscode[property])) {
+        codetext[cmpName] += `${property}:${csscode[property]};`;
+        tempCode += `${property}:${csscode[property]};`;
+      }
+    }
+    codetext[cmpName] += "}";
 
     var codeBlock = document.querySelector(".code");
     codeBlock.innerHTML = "";
-    for (var i = 0; i < cssString[cmpName].length; i++) {
-      if (cssString[cmpName][i] == ";" || cssString[cmpName][i] == "{") {
-        codeBlock.innerHTML += `${cssString[cmpName][i]}</br>`;
+    for (var i = 0; i < codetext[cmpName].length; i++) {
+      if (codetext[cmpName][i] == ";" || codetext[cmpName][i] == "{") {
+        codeBlock.innerHTML += `${codetext[cmpName][i]}</br>`;
       } else {
-        codeBlock.innerHTML += `${cssString[cmpName][i]}`;
+        codeBlock.innerHTML += `${codetext[cmpName][i]}`;
       }
     }
-  });
+    console.log(tempCode);
+    document.querySelector(".displayblock").style.cssText = tempCode;
+  }
 
   //Search Mechanism for components
   var cmpsearch = document.getElementById("charinput");
@@ -255,11 +301,13 @@ function fonts() {
 }
 
 function border() {
-  csscode["border-color"] = document.getElementById("border-color").value;
-  csscode["border-style"] = document.getElementById("border-style").value;
   csscode["border"] =
     document.getElementById("border-all").value +
-    document.getElementById("border-units").value;
+    document.getElementById("border-units").value +
+    " " +
+    document.getElementById("border-style").value +
+    " " +
+    document.getElementById("border-color").value;
   csscode["border-top"] =
     document.getElementById("border-top").value +
     document.getElementById("border-units").value;
