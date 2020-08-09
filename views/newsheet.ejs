@@ -37,7 +37,7 @@
     <div class="sheet-box">
       <div class="col s8">
         <div class="title-bar col s12" id="comp-title">
-          <div class="input-field col s4">
+          <div class="input-field col s3">
             <input
               id="component-title"
               value="demo"
@@ -46,7 +46,7 @@
             />
             <label for="component-title">Name Of Component</label>
           </div>
-          <div class="input-field col s4">
+          <div class="input-field col s3">
             <select id="component-type">
               <option value="" disabled>Choose your option</option>
               <option value="class" selected>Class</option>
@@ -54,7 +54,7 @@
             </select>
             <label>Type of Component</label>
           </div>
-          <div class="col s4 valign-wrapper btn-box">
+          <div class="col s6 valign-wrapper btn-box">
             <button
               class="btn waves-effect waves-light disabled"
               id="component-btn"
@@ -63,6 +63,15 @@
             >
               Add to sheet
               <i class="material-icons right">add</i>
+            </button>
+            <button
+              class="btn waves-effect waves-light deep-purple darken-4"
+              id="reset-btn"
+              name="action"
+              onclick="reset()"
+            >
+              Reset Inputs
+              <i class="material-icons right">undo</i>
             </button>
           </div>
         </div>
@@ -114,5 +123,9 @@
     );
     M.updateTextFields();
   });
+
+  function reset() {
+    M.toast({ html: "Inputs Reset" });
+  }
 </script>
 <script src="/js/inputhandler.js"></script>

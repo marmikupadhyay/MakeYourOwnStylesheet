@@ -151,6 +151,29 @@ document.addEventListener("DOMContentLoaded", e => {
     document.querySelector(".displayblock").style.cssText = tempCode;
   }
 
+  //event listner to reset the inputs
+  document.getElementById("reset-btn").addEventListener("click", e => {
+    var area = document.querySelector(".collapsible");
+    var inputs = area.getElementsByTagName("input");
+    var selects = area.getElementsByTagName("select");
+    for (var i = 0; i < inputs.length; i++) {
+      if (inputs[i].type == "text" || inputs[i].type == "number") {
+        inputs[i].value = "";
+      } else if (inputs[i].type == "color") {
+        inputs[i].value = "#000000";
+      }
+    }
+    for (var i = 0; i < selects.length; i++) {
+      if (selects[i].options[0].disabled) {
+        selects[i].selectedIndex = "1";
+        console.log(0);
+      } else {
+        selects[i].selectedIndex = "0";
+        console.log(0);
+      }
+    }
+  });
+
   //Search Mechanism for components
   var cmpsearch = document.getElementById("charinput");
   cmpsearch.addEventListener("input", e => {
