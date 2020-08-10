@@ -122,3 +122,19 @@ input[type="color"] {
 .cmp-btn-box i {
   z-index: -1;
 }
+
+@media only screen and (max-width: 768px) {
+  .workspace {
+    width: 100%;
+    margin: 0;
+  }
+
+  .sheet-box {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .workspace .title-bar {
+    flex-wrap: wrap;
+  }
+}

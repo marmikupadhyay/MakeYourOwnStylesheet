@@ -5,7 +5,7 @@
   <section class="workspace">
     <div class="title-bar col s12">
       <div class="hide" id="sheet-id"><%= id %></div>
-      <div class="input-field col s8">
+      <div class="input-field col m8 s12">
         <input
           id="sheet-title"
           type="text"
@@ -14,7 +14,7 @@
         />
         <label for="sheet-title">Name Of Sheet</label>
       </div>
-      <div class="col s4 valign-wrapper btn-box">
+      <div class="col m4 s12 valign-wrapper btn-box">
         <button
           class="btn waves-effect waves-light disabled"
           name="action"
@@ -35,9 +35,9 @@
       </div>
     </div>
     <div class="sheet-box">
-      <div class="col s8">
+      <div class="col m8 s12">
         <div class="title-bar col s12" id="comp-title">
-          <div class="input-field col s3">
+          <div class="input-field col m3 s6">
             <input
               id="component-title"
               value="demo"
@@ -46,7 +46,7 @@
             />
             <label for="component-title">Name Of Component</label>
           </div>
-          <div class="input-field col s3">
+          <div class="input-field col m3 s6">
             <select id="component-type">
               <option value="" disabled>Choose your option</option>
               <option value="class" selected>Class</option>
@@ -54,7 +54,7 @@
             </select>
             <label>Type of Component</label>
           </div>
-          <div class="col s6 valign-wrapper btn-box">
+          <div class="col m6 s12 valign-wrapper btn-box">
             <button
               class="btn waves-effect waves-light disabled"
               id="component-btn"
@@ -76,7 +76,7 @@
           </div>
         </div>
         <div class="preview-bar">
-          <div class="col s6 code-box">
+          <div class="col m6 s12 code-box">
             <div class="card blue-grey hoverable darken-1 code-card">
               <div class="card-content white-text">
                 <span class="card-title">Code Preview</span>
@@ -87,7 +87,7 @@
               </div>
             </div>
           </div>
-          <div class="col s6 display-box">
+          <div class="col m6 s12 display-box">
             <div class="card blue-grey hoverable darken-1">
               <div class="card-content white-text">
                 <span class="card-title">Display Preview</span>
@@ -100,7 +100,7 @@
         </div>
         <%- include("./partials/inputhandler.ejs") %>
       </div>
-      <div class="col s4">
+      <div class="col m4 s12">
         <%- include("./partials/messages.ejs") %>
         <div class="input-field col s12">
           <i class="material-icons prefix">search</i>

@@ -93,6 +93,35 @@ body {
   color: white;
 }
 
+.toolbar {
+  /* display: none; */
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-wrapper a {
+    font-size: 1.5em;
+    width: 100%;
+    text-align: center;
+  }
+
+  .side-nav-slim {
+    display: none;
+  }
+
+  .right-side-bar {
+    position: relative;
+    width: 100%;
+    margin: 0 !important;
+  }
+
+  .main-row {
+    flex-direction: column;
+  }
+  .toolbar {
+    display: block;
+  }
+}
+
 /* 
 f7b267-e3d3e4-00ffcd-d72638-1565c0
 */

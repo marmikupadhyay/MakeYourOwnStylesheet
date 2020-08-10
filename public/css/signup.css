@@ -63,3 +63,8 @@
   font-size: 1.1em;
   color: white;
 }
+@media only screen and (max-width: 768px) {
+  .register-box {
+    width: 100%;
+  }
+}
