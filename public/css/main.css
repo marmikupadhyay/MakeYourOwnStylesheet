@@ -93,8 +93,8 @@ body {
   color: white;
 }
 
-.toolbar {
-  /* display: none; */
+.mobile-nav {
+  display: none;
 }
 
 @media only screen and (max-width: 768px) {
@@ -117,7 +117,7 @@ body {
   .main-row {
     flex-direction: column;
   }
-  .toolbar {
+  .mobile-nav {
     display: block;
   }
 }
