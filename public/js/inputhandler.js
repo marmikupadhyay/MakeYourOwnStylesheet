@@ -6,17 +6,7 @@ var edits;
 var deletes;
 var check = 0;
 
-//Document Loaded Listener
-document.addEventListener("DOMContentLoaded", e => {
-  getListItems();
-
-  edits = document.querySelectorAll(".cmp-edit");
-  deletes = document.querySelectorAll(".cmp-delete");
-
-  csscode = {};
-  getCode();
-
-  //Disabling Buttons If file name not provided
+function disableBtns() {
   document.getElementById("sheet-title").addEventListener("input", e => {
     if (e.target.value == "") {
       document.getElementById("save").className += " disabled";
@@ -41,7 +31,9 @@ document.addEventListener("DOMContentLoaded", e => {
       document.getElementById("component-btn").classList.remove("disabled");
     }
   });
+}
 
+function savePropertyListners() {
   //Adding click listeners to the properties buttons
   document.querySelector(".bg-btn").addEventListener("click", e => {
     background();
@@ -79,6 +71,94 @@ document.addEventListener("DOMContentLoaded", e => {
     others();
     showPreview();
   });
+}
+
+//function to show preview of the properties
+function showPreview() {
+  var cmpName = document.getElementById("component-title").value;
+  var tempCode = "";
+  var codetext = {};
+  if (document.getElementById("component-type").value == "class") {
+    codetext[cmpName] = ".";
+  }
+  if (document.getElementById("component-type").value == "id") {
+    codetext[cmpName] = "#";
+  }
+
+  codetext[cmpName] += `${document.getElementById("component-title").value}{`;
+  for (property in csscode) {
+    if (property == "background-image") {
+      if (csscode[property] == "url()") {
+        continue;
+      }
+    }
+    var NA = ["", "px", "%", "em", "rem", "vh", "vw"];
+    if (!NA.includes(csscode[property])) {
+      codetext[cmpName] += `${property}:${csscode[property]};`;
+      tempCode += `${property}:${csscode[property]};`;
+    }
+  }
+  codetext[cmpName] += "}";
+
+  var codeBlock = document.querySelector(".code");
+  codeBlock.innerHTML = "";
+  for (var i = 0; i < codetext[cmpName].length; i++) {
+    if (codetext[cmpName][i] == ";" || codetext[cmpName][i] == "{") {
+      codeBlock.innerHTML += `${codetext[cmpName][i]}</br>`;
+    } else {
+      codeBlock.innerHTML += `${codetext[cmpName][i]}`;
+    }
+  }
+  console.log(tempCode);
+  document.querySelector(".displayblock").style.cssText = tempCode;
+}
+
+function handleFileInput() {
+  const fileInput = document.getElementById("file-input");
+  const previewBtn = document.getElementById("preview-btn");
+  previewBtn.addEventListener("click", e => {
+    if (fileInput.value == "") {
+      return;
+    }
+    const selectedFile = fileInput.files[0];
+    const reader = new FileReader();
+    reader.readAsText(selectedFile);
+    var fileContent;
+    var tempStyle = "";
+    for (property in cssString) {
+      tempStyle += `${cssString[property]}`;
+    }
+    reader.onload = e => {
+      fileContent = e.target.result;
+      var arr = fileContent.split("<body>");
+      var arr = arr[1].split("</body>");
+      fileContent = arr[0];
+      var previewTab = window.open("about:blank", "");
+      previewTab.document.write(`
+      <html><head><style>${tempStyle}</style><title>Preview Page</title></head><body>${fileContent}</body></html>
+      `);
+    };
+  });
+}
+
+//Document Loaded Listener
+document.addEventListener("DOMContentLoaded", e => {
+  getListItems();
+
+  edits = document.querySelectorAll(".cmp-edit");
+  deletes = document.querySelectorAll(".cmp-delete");
+
+  csscode = {};
+  getCode();
+
+  //Disabling Buttons If file name not provided
+  disableBtns();
+
+  //Adding click listeners to the properties buttons
+  savePropertyListners();
+
+  //handling File Inputs
+  handleFileInput();
 
   //Adding click listener to the add component btn
   document.getElementById("component-btn").addEventListener("click", e => {
@@ -111,51 +191,12 @@ document.addEventListener("DOMContentLoaded", e => {
     cssString[cmpName] += "}";
   });
 
-  //function to show preview of the properties
-  function showPreview() {
-    var cmpName = document.getElementById("component-title").value;
-    var tempCode = "";
-    var codetext = {};
-    if (document.getElementById("component-type").value == "class") {
-      codetext[cmpName] = ".";
-    }
-    if (document.getElementById("component-type").value == "id") {
-      codetext[cmpName] = "#";
-    }
-
-    codetext[cmpName] += `${document.getElementById("component-title").value}{`;
-    for (property in csscode) {
-      if (property == "background-image") {
-        if (csscode[property] == "url()") {
-          continue;
-        }
-      }
-      var NA = ["", "px", "%", "em", "rem", "vh", "vw"];
-      if (!NA.includes(csscode[property])) {
-        codetext[cmpName] += `${property}:${csscode[property]};`;
-        tempCode += `${property}:${csscode[property]};`;
-      }
-    }
-    codetext[cmpName] += "}";
-
-    var codeBlock = document.querySelector(".code");
-    codeBlock.innerHTML = "";
-    for (var i = 0; i < codetext[cmpName].length; i++) {
-      if (codetext[cmpName][i] == ";" || codetext[cmpName][i] == "{") {
-        codeBlock.innerHTML += `${codetext[cmpName][i]}</br>`;
-      } else {
-        codeBlock.innerHTML += `${codetext[cmpName][i]}`;
-      }
-    }
-    console.log(tempCode);
-    document.querySelector(".displayblock").style.cssText = tempCode;
-  }
-
   //event listner to reset the inputs
   document.getElementById("reset-btn").addEventListener("click", e => {
     var area = document.querySelector(".collapsible");
     var inputs = area.getElementsByTagName("input");
     var selects = area.getElementsByTagName("select");
+    document.getElementById("component-title").value = "";
     for (var i = 0; i < inputs.length; i++) {
       if (inputs[i].type == "text" || inputs[i].type == "number") {
         inputs[i].value = "";
@@ -166,10 +207,8 @@ document.addEventListener("DOMContentLoaded", e => {
     for (var i = 0; i < selects.length; i++) {
       if (selects[i].options[0].disabled) {
         selects[i].selectedIndex = "1";
-        console.log(0);
       } else {
         selects[i].selectedIndex = "0";
-        console.log(0);
       }
     }
   });
@@ -215,50 +254,33 @@ function showList(list) {
     var item = document.createElement("li");
     item.innerHTML = listitem;
     var parentCmp = "";
-    for (var i = 0; i < listitem.length; i++) {
-      if (listitem[i] != ":") {
-        parentCmp += listitem[i];
-      } else {
-        break;
-      }
-    }
+    var res = listitem.split(":");
+    parentCmp = res[0];
+
     item.className = "collection-item";
-    // item.innerHTML += `
-    // <div class="cmp-btn-box">
-    // <a class="btn-floating waves-effect cmp-edit waves-light" id="${parentCmp}"><i class="material-icons">edit</i></a>
-    // <a class="btn-floating waves-effect cmp-delete waves-light red" id="${parentCmp}"><i class="material-icons">delete</i></a>
-    // </div>`;
+    item.innerHTML += `
+    <div class="cmp-btn-box">
+    <a class="btn-floating waves-effect cmp-delete waves-light red" id="${parentCmp}"><i class="material-icons" onclick="M.toast({html: 'Component Deleted'})">delete</i></a>
+    </div>`;
     container.appendChild(item);
   });
-  if (!check) {
-    //Click Listeners for edit and delete of components
 
-    edits = document.querySelectorAll(".cmp-edit");
-    deletes = document.querySelectorAll(".cmp-delete");
+  deletes = document.querySelectorAll(".cmp-delete");
 
-    edits.forEach(btn => {
-      btn.addEventListener("click", e => {
-        var cmpName = e.target.parentElement.id;
-        console.log(cssString[cmpName]);
-      });
-    });
-
-    deletes.forEach(btn => {
-      btn.addEventListener("click", e => {
-        var cmpName = e.target.parentElement.id;
-        console.log(cmpName);
-        delete cssString[cmpName];
-        for (var i = 0; i < list.length; i++) {
-          if (list[i] == cmpName) {
-            list.splice(i, 1);
-            i--;
-          }
+  deletes.forEach(btn => {
+    btn.addEventListener("click", e => {
+      var cmpName = e.target.parentElement.id;
+      delete cssString[cmpName];
+      for (var i = 0; i < list.length; i++) {
+        let res = list[i].split(":");
+        if (res[0] == cmpName) {
+          list.splice(i, 1);
+          i--;
         }
-        showList(list);
-      });
+      }
+      showList(list);
     });
-  }
-  check++;
+  });
 }
 
 //Save Btn click listener
@@ -272,7 +294,6 @@ document.getElementById("download").addEventListener("click", e => {
   for (property in cssString) {
     finalCss += `${cssString[property]}`;
   }
-  console.log(finalCss);
   saveSheet();
 });
 

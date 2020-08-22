@@ -4,6 +4,10 @@
   src: url(/kremlin.tff);
 }
 
+body {
+  background: #eceff1 !important;
+}
+
 .wrapper {
   background: url(/images/bg2.jpg);
   height: 100vh;

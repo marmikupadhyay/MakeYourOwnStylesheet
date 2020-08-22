@@ -133,4 +133,8 @@ router.get("/download/:id", ensureAuthenticated, (req, res, next) => {
     });
 });
 
+router.get("/preview/:id", ensureAuthenticated, (req, res) => {
+  res.render("previewPage");
+});
+
 module.exports = router;

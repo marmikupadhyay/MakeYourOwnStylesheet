@@ -3,8 +3,8 @@ html {
 }
 
 body {
-  background: #263238;
-  background: #eceff1;
+  /* background: rgb(18, 17, 54); */
+  background: #eceff1 !important;
   overflow-y: auto;
 }
 
@@ -27,7 +27,7 @@ body {
   height: 100vh;
   position: fixed;
   background: #eceff1;
-  background: #263238;
+  background: rgb(26, 15, 113);
   /* background: #424b5f; */
   z-index: 0;
 }
@@ -51,7 +51,7 @@ body {
 }
 
 .side-nav-item:hover {
-  background: #455a64;
+  background: rgb(45, 43, 121);
 }
 .main-row {
   display: flex;
@@ -59,7 +59,7 @@ body {
 }
 .side-nav-item.active {
   text-decoration: underline;
-  background: #546e7a !important;
+  background: rgb(34, 32, 94) !important;
 }
 
 .right-side-bar {

@@ -5,7 +5,7 @@
   <section class="workspace">
     <div class="title-bar col s12">
       <div class="hide" id="sheet-id"><%= id %></div>
-      <div class="input-field col m8 s12">
+      <div class="input-field col m7 s12">
         <input
           id="sheet-title"
           type="text"
@@ -14,7 +14,7 @@
         />
         <label for="sheet-title">Name Of Sheet</label>
       </div>
-      <div class="col m4 s12 valign-wrapper btn-box">
+      <div class="col m5 s12 valign-wrapper btn-box">
         <button
           class="btn waves-effect waves-light disabled"
           name="action"
@@ -31,6 +31,13 @@
         >
           Download
           <i class="material-icons right">get_app</i>
+        </button>
+        <button
+          class="btn waves-effect waves-light deep-purple darken-4"
+          id="preview-btn"
+        >
+          Preview 
+          <i class="material-icons right">visibility</i>
         </button>
       </div>
     </div>
@@ -102,6 +109,20 @@
       </div>
       <div class="col m4 s12">
         <%- include("./partials/messages.ejs") %>
+        <div class="col s12">
+          <div class="row">
+            <label>Input HTML file to check</label>
+            <div class="file-field input-field">
+              <div class="btn deep-purple darken-4">
+                <span>Browse</span>
+                <input type="file" class="validate" id="file-input" accept=".html" />
+              </div>
+          
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload file" />
+              </div>
+            </div>
+        </div>
         <div class="input-field col s12">
           <i class="material-icons prefix">search</i>
           <input type="text" id="charinput" />
