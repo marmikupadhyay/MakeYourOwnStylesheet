@@ -5,12 +5,15 @@ const Sheet = require("../models/Sheet");
 const { response } = require("express");
 const { saveAs } = require("file-saver");
 const Blob = require("cross-blob");
+const User = require("../models/User");
+const e = require("express");
 
 router.get("/new", ensureAuthenticated, (req, res, next) => {
   var newSheet = new Sheet({
     author: req.user._id,
     filename: "untitled",
-    content: {}
+    content: {},
+    colabs: []
   });
   newSheet
     .save()
@@ -26,7 +29,21 @@ router.get("/new", ensureAuthenticated, (req, res, next) => {
 router.get("/edit/:id", ensureAuthenticated, (req, res, next) => {
   Sheet.findOne({ _id: req.params.id })
     .then(sheet => {
-      res.render("newsheet", { id: req.params.id, title: sheet.filename });
+      var access = true;
+      if (
+        req.user._id.equals(sheet.author) ||
+        sheet.colabs.includes(req.user._id)
+      ) {
+        res.render("newsheet", {
+          id: req.params.id,
+          title: sheet.filename,
+          author: sheet.author,
+          userId: req.user._id
+        });
+      } else {
+        req.flash("error_msg", "Not Authorized");
+        res.redirect("/user/dashboard");
+      }
     })
     .catch(err => {
       console.log(err);
@@ -135,6 +152,104 @@ router.get("/download/:id", ensureAuthenticated, (req, res, next) => {
 
 router.get("/preview/:id", ensureAuthenticated, (req, res) => {
   res.render("previewPage");
+});
+
+//Adding collabrators to sheets
+router.post("/adduser/:id", ensureAuthenticated, (req, res) => {
+  const userToFind = req.body;
+  Sheet.findOne({ _id: req.params.id }, (err, sheet) => {
+    if (!sheet.author.equals(req.user._id)) {
+      req.flash("error_msg", "Not Authorized");
+      res.redirect("/user/dashboard");
+    }
+  });
+  User.findOne({ username: userToFind.name })
+    .then(user => {
+      if (!user) {
+        res.status(404);
+        res.json({ error: "User Not Found" });
+      } else {
+        Sheet.findOneAndUpdate(
+          { _id: req.params.id },
+          { $push: { colabs: user._id } }
+        )
+          .then(sheet => {
+            res.status(200);
+            res.json({ name: user.username });
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+// Removing Collabarators
+router.post("/removeuser/:id", ensureAuthenticated, (req, res) => {
+  const userToFind = req.body;
+  Sheet.findOne({ _id: req.params.id }, (err, sheet) => {
+    if (!sheet.author.equals(req.user._id)) {
+      req.flash("error_msg", "Not Authorized");
+      res.redirect("/user/dashboard");
+    }
+  });
+  User.findOne({ username: userToFind.name })
+    .then(user => {
+      if (!user) {
+        res.status(404);
+        res.json({ error: "User Not Found" });
+      } else {
+        Sheet.findOneAndUpdate(
+          { _id: req.params.id },
+          { $pull: { colabs: user._id } }
+        )
+          .then(sheet => {
+            res.status(200);
+            res.json({ name: user.username });
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
+router.get("/collablist/:id", (req, res) => {
+  Sheet.findOne({ _id: req.params.id })
+    .then(sheet => {
+      if (!sheet) {
+        res.status(404);
+        res.json({ error: "Sheet Not Found" });
+      } else {
+        User.find({})
+          .then(users => {
+            users = users.filter(user => {
+              return sheet.colabs.includes(user._id);
+            });
+            const collabarators = users.map(user => {
+              return user.username;
+            });
+            res.status(200);
+            res.json({ users: collabarators });
+          })
+          .catch(err => {
+            console.log(err);
+            res.status(500);
+            res.json({ error: "Internal Server Error" });
+          });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500);
+      res.json({ error: "Internal Server Error" });
+    });
 });
 
 module.exports = router;

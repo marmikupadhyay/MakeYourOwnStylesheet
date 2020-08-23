@@ -12,6 +12,9 @@ const SheetSchema = new mongoose.Schema({
   content: {
     type: mongoose.Schema.Types.Mixed,
     required: true
+  },
+  colabs: {
+    type: [mongoose.Schema.Types.ObjectId]
   }
 });
 

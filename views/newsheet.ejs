@@ -109,8 +109,8 @@
       </div>
       <div class="col m4 s12">
         <%- include("./partials/messages.ejs") %>
-        <div class="col s12">
-          <div class="row">
+        <div class="col s12 ">
+          <div class="row utility">
             <label>Input HTML file to check</label>
             <div class="file-field input-field">
               <div class="btn deep-purple darken-4">
@@ -122,7 +122,13 @@
                 <input class="file-path validate" type="text" placeholder="Upload file" />
               </div>
             </div>
-        </div>
+          </div>
+          <div class="col s12 utility">
+            <span class="utility-title">Collaborators</span>
+            <div class="collection" id="collab-list" data-id="<%= id %>">
+
+            </div>
+          </div>
         <div class="input-field col s12">
           <i class="material-icons prefix">search</i>
           <input type="text" id="charinput" />
@@ -131,6 +137,29 @@
         <div class="component-list">
           <ul class="collection" id="all-components"></ul>
         </div>
+        <% if(userId.equals(author)) { %>
+        <div class="col s12 utility">
+          <form id="add-user-form">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">group</i>
+              <input type="text" id="<%= id %>" name="person" class=""/>
+              <label for="<%= id %>" class="">Give another user access to sheet</label>
+            </div>
+            <button class="waves-effect waves-light btn deep-purple darken-3" type="submit"><i class="material-icons left">add</i>Add</button>
+          </form>
+        </div>
+        <div class="col s12 utility">
+          <form id="remove-user-form">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">group</i>
+              <input type="text" id="<%= id %>_" name="person" class="" />
+              <label for="<%= id %>_" class="">Remove access of user from sheet</label>
+            </div>
+            <button class="waves-effect waves-light btn deep-purple darken-3" type="submit"><i
+                class="material-icons left">remove</i>Remove</button>
+          </form>
+        </div>
+        <% } %>
       </div>
     </div>
   </section>
@@ -150,3 +179,5 @@
   }
 </script>
 <script src="/js/inputhandler.js"></script>
+<script src="/js/main.js"></script>
+

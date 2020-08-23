@@ -113,6 +113,7 @@ function showPreview() {
   document.querySelector(".displayblock").style.cssText = tempCode;
 }
 
+//Function to handle the html file input
 function handleFileInput() {
   const fileInput = document.getElementById("file-input");
   const previewBtn = document.getElementById("preview-btn");
@@ -144,9 +145,6 @@ function handleFileInput() {
 //Document Loaded Listener
 document.addEventListener("DOMContentLoaded", e => {
   getListItems();
-
-  edits = document.querySelectorAll(".cmp-edit");
-  deletes = document.querySelectorAll(".cmp-delete");
 
   csscode = {};
   getCode();

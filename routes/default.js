@@ -6,11 +6,20 @@ const User = require("../models/User");
 const Sheet = require("../models/Sheet");
 
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
+const e = require("express");
 
 router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
   var sentSheets;
-  Sheet.find({ author: req.user._id })
+  Sheet.find({})
     .then(sheets => {
+      var filteredSheets = sheets.filter(sheet => {
+        return (
+          sheet.author.equals(req.user._id) ||
+          sheet.colabs.includes(req.user._id)
+        );
+      });
+      sheets = filteredSheets;
+
       if (req.query.s == undefined) {
         sentSheets = sheets;
       } else {
